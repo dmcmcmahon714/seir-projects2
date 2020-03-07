@@ -1,0 +1,24 @@
+{
+  "name": "project-2-master",
+  "version": "1.0.0",
+  "description": "Problem: I have a simple/minor pain issue that I have a hard time keeping track of over time. General Purpose/Idea: Allows users to rate their pain based on the date.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dmcmcmahon714/seir-projects2.git"
+  },
+  "author": "Dan McMahon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dmcmcmahon714/seir-projects2/issues"
+  },
+  "homepage": "https://github.com/dmcmcmahon714/seir-projects2#readme",
+  "dependencies": {
+    "ejs": "^3.0.1",
+    "mongoose": "^5.9.3"
+  }
+}
