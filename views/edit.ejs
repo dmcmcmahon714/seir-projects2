@@ -1,16 +1,18 @@
-<h1>Edit a lifeform on this planet</h1>
-<form action="/items/<%= index %>?_method=PUT" method="POST">
-
-	<!--  NOTE: Thanks to the following `value` attribute trick, the form is pre-populated with the current values for this item :) -->
-	<p>
-	  <label for="name">Name:</label>
-	  <input type="text" name="name" id="name" value="<%=item.name%>" />
-	</p>
-	<p>
-	  <label for="description">Description:</label>
-	  <input type="text" name="description" id="description" value="<%=item.description%>" />
-	</p>
-
-
-	<input type="submit" name="" value="Submit Changes" />
-</form>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <h1>Edit Pain</h1>
+        <form action="/trackers/<%=tracker.id%>?_method=PUT" method="POST">
+    		<!--  NOTE: the form is pre-populated with values for the server-->
+    		Name: <input type="text" name="name" value="<%=tracker.name%>"/><br/>
+    		Type: <input type="text" name="Type" value="<%=tracker.type%>"/><br/>
+            />
+            <br/>
+            <input type="submit" name="" value="Submit Changes"/>
+        </form>
+    </body>
+</html>

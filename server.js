@@ -1,68 +1,42 @@
-// Load express:
 const express = require("express");
 const app = express();
-
-// Set the web server port:
-const port = 3000;
-
-// Load methodOverride middleware so you can make delete, put, and
-// patch requests from web pages:
 const methodOverride = require("method-override");
 
-// const items = [{ name: "Xylox", description: "An astronaut" }];
-const items = [];
-
-// Load body parser middleware:
-app.use(express.urlencoded({ extended: false }));
-
-// Load methodOverride as middleware to support ?_method=<METHOD> query strings:
+// Load up mongoose npm as mongoose:
+const mongoose = require("mongoose");
+// allows server to review json data
+app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
-
-// Define one or more routes:
-
-// NEW
-app.get("/items/new", (req, res) => {
-  res.render("new.ejs");
+// your own custom middleware
+app.use((req, res, next) => {
+  console.log("my own middleware");
+  next();
 });
 
-// EDIT
-app.get("/items/:id/edit", (req, res) => {
-  res.render("edit.ejs", {
-    item: items[req.params.id],
-    index: req.params.id
-  });
+// Connect mongoose to mongo db:
+mongoose.connect("mongodb://localhost:27017/trackersdb", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+mongoose.connection.once("open", () => {
+  console.log("connected to mongo");
 });
 
-// UPDATE
-app.put("/items/:id", (req, res) => {
-  items[req.params.id] = req.body;
-  res.redirect("/items");
+const trackersController = require("./controllers/trackers.js");
+// any routes that come in for trackers should be sent
+// to the trackersController
+app.use("/trackers", trackersController);
+
+app.get("/", (req, res) => {
+  res.redirect("/trackers");
 });
 
-// SHOW
-app.get("/items/:id", (req, res) => {
-  res.render("show.ejs", { item: items[req.params.id] });
+// wildcard route
+app.get("*", (req, res) => {
+  res.redirect("/trackers");
 });
 
-// DESTROY
-app.delete("/items/:id", (req, res) => {
-  items.splice(req.params.id, 1); //remove the item from the array
-  res.redirect("/items"); //redirect to index page
-});
-
-// CREATE
-app.post("/items/", (req, res) => {
-  let index = items.push(req.body) - 1;
-  res.redirect(`/items/${index}`);
-});
-
-// INDEX
-app.get("/items/", (req, res) => {
-  res.render("index.ejs", { items: items });
-});
-
-// WEB SERVER //
-// Load up the express web server. IMPORTANT: Always do this at the end of your server.js:
-app.listen(port, () => {
-  console.log("listening on port", port);
+// Web server:
+app.listen(3000, () => {
+  console.log("listening");
 });

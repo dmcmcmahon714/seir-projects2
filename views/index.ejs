@@ -1,17 +1,29 @@
-<h1>Listing all items on the planet:</h1>
+<!DOCTYPE html>
+<html>
 
-<% for (let i in items) { %>
-<h2><%= items[i].name %></h2>
-<p><%= items[i].description %></p>
-<a href="/items/<%= i %>">Show this item</a> |
-<a href="/items/<%= i %>/edit">Edit this item</a>
-<form action="/items/<%= i %>?_method=DELETE" method="POST">
-  <input type="submit" value="DELETE LIFEFORM">
-</form>
-<hr>
-<% } %>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
 
-<p>
-  <a href="/items/new">Add a new lifeform</a>
-</p>
-views/show.ejs
+<body>
+  <h1>Pain Record</h1>
+  <ul>
+    <% for(let i = 0; i < trackers.length; i++){ %>
+    <li>
+    <a href="/trackers/<%=trackers[i].id; %>">
+        <%=trackers[i].name; %>
+      </a><%=trackers[i].type; %>.
+      <!-- ADD DELETE FORM HERE -->
+      <form action="/trackers/<%=trackers[i].id%>?_method=DELETE" method="POST">
+        <input type="submit" value="DELETE" />
+      </form>
+          <!-- trackers/5e5a93cd12675b4c0efcb17e/edit -->
+          <a href="/trackers/<%=trackers[i].id%>/edit">Edit</a>
+        </li>
+        <% } %>
+  </ul>
+
+</body>
+
+</html>
