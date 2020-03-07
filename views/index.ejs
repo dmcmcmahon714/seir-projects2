@@ -1,0 +1,17 @@
+<h1>Listing all items on the planet:</h1>
+
+<% for (let i in items) { %>
+<h2><%= items[i].name %></h2>
+<p><%= items[i].description %></p>
+<a href="/items/<%= i %>">Show this item</a> |
+<a href="/items/<%= i %>/edit">Edit this item</a>
+<form action="/items/<%= i %>?_method=DELETE" method="POST">
+  <input type="submit" value="DELETE LIFEFORM">
+</form>
+<hr>
+<% } %>
+
+<p>
+  <a href="/items/new">Add a new lifeform</a>
+</p>
+views/show.ejs
