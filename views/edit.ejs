@@ -9,8 +9,8 @@
         <form action="/trackers/<%=tracker.id%>?_method=PUT" method="POST">
     		<!--  NOTE: the form is pre-populated with values for the server-->
     		Name: <input type="text" name="name" value="<%=tracker.name%>"/><br/>
-    		Type: <input type="text" name="Type" value="<%=tracker.type%>"/><br/>
-            />
+            Type: <input type="text" name="Type" value="<%=tracker.type%>"/><br/>
+            Pain: <input type="number" name="Pain Score" value="<%=tracker.type%>"/><br/>
             <br/>
             <input type="submit" name="" value="Submit Changes"/>
         </form>

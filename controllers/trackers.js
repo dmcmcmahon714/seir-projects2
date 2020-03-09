@@ -11,8 +11,6 @@ router.get("/new", (req, res) => {
 
 // CREATE
 router.post("/", (req, res) => {
-    let pain = parseInt(req.body.number)
-    req.body.number = pain
   Tracker.create(req.body, (error, result) => {
       console.log(error)
     // res.send(result);
@@ -23,7 +21,7 @@ router.post("/", (req, res) => {
 // INDEX..aka SHOW ALL
 router.get("/", (req, res) => {
   Tracker.find({}, (error, trackers) => {
-    // res.send(fruits);
+    // res.send(trackers);
     res.render("index.ejs", { trackers });
   });
 });
@@ -73,7 +71,7 @@ router.delete("/:id", (req, res) => {
 });
 
 // EDIT
-// /fruits/5e5a93cd12675b4c0efcb17e/edit
+// /trackers/5e5a93cd12675b4c0efcb17e/edit
 router.get("/:id/edit", (req, res) => {
   Tracker.findById(req.params.id, (err, foundTracker) => {
     console.log("foundTracker", foundTracker);
