@@ -20,37 +20,36 @@ router.post("/", (req, res) => {
 // INDEX..aka SHOW ALL
 router.get("/", (req, res) => {
   Log.find({}, (error, logs) => {
-    // res.send(fruits);
-    res.render("index.ejs", { logs });
+    res.render("logs/index.ejs", { logs });
   });
 });
 
 // // SECRET SEED ROUTE
-// router.get("/seed", (req, res) => {
-//   Fruit.create(
-//     [
-//       {
-//         name: "grapefruit",
-//         color: "pink",
-//         readyToEat: true
-//       },
-//       {
-//         name: "grape",
-//         color: "purple",
-//         readyToEat: false
-//       },
-//       {
-//         name: "avocado",
-//         color: "green",
-//         readyToEat: true
-//       }
-//     ],
-//     (error, data) => {
-//       console.log(data);
-//       res.redirect("/fruits");
-//     }
-//   );
-// });
+router.get("/seed", (req, res) => {
+  Log.create(
+    [
+      {
+        type: "back pain",
+        level: "6",
+        date: "3-6-2020"
+      },
+      {
+        type: "migraine",
+        level: "4",
+        date: "3-8-2020"
+      },
+      {
+        type: "sciatica",
+        level: "9",
+        date: "2-22-2020"
+      },
+    ],
+    (error, data) => {
+      console.log(data);
+      res.redirect("/logs");
+    }
+  );
+});
 
 // SHOW ONE
 router.get("/:id", (req, res) => {

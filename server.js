@@ -6,13 +6,7 @@ const methodOverride = require("method-override");
 
 
 app.use(express.urlencoded({ extended: false }));
-app.use(
-  session({
-    secret: "feedmeseymour", //some random string
-    resave: false,
-    saveUninitialized: false
-  })
-);
+
 app.use(methodOverride("_method"));
 
 mongoose.connect("mongodb://localhost:27017/authexampleapp", {
@@ -23,14 +17,23 @@ mongoose.connection.once("open", () => {
   console.log("connected to mongo");
 });
 
-app.get("/", (req, res) => {
-  res.redirect("/users", {
+app.use(
+  session({
+    secret: "feedmeseymour", //some random string
+    resave: false,
+    saveUninitialized: false
+  })
+);
+
+app.get("/", (req, res)=>{
+  res.render("index.ejs", {
     currentUser: req.session.currentUser
   });
 });
 
+
 app.post("/", (req, res) => {
-  res.render("./new.ejs", {
+  res.render("show.ejs", {
     currentUser: req.session.currentUser
   });
 });
