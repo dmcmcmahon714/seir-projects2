@@ -1,20 +1,21 @@
 const express = require("express");
 const app = express();
+const mongoose = require("mongoose");
+const session = require("express-session");
 const methodOverride = require("method-override");
 
-// Load up mongoose npm as mongoose:
-const mongoose = require("mongoose");
-// allows server to review json data
-app.use(express.urlencoded({ extended: true }));
-app.use(methodOverride("_method"));
-// your own custom middleware
-app.use((req, res, next) => {
-  console.log("my own middleware");
-  next();
-});
 
-// Connect mongoose to mongo db:
-mongoose.connect("mongodb://localhost:27017/trackersdb", {
+app.use(express.urlencoded({ extended: false }));
+app.use(
+  session({
+    secret: "feedmeseymour", //some random string
+    resave: false,
+    saveUninitialized: false
+  })
+);
+app.use(methodOverride("_method"));
+
+mongoose.connect("mongodb://localhost:27017/authexampleapp", {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
@@ -22,21 +23,45 @@ mongoose.connection.once("open", () => {
   console.log("connected to mongo");
 });
 
-const trackersController = require("./controllers/trackers.js");
-// any routes that come in for trackers should be sent
-// to the trackersController
-app.use("/trackers", trackersController);
+app.get("/", (req, res) => {
+  // if (req.session.currentUser) {
+  //   res.send("the party");
+  // } else {
+  //   res.redirect("/sessions/new");
+  // }
+  res.render("index.ejs", {
+    currentUser: req.session.currentUser
+  });
+});
+
 
 app.get("/", (req, res) => {
-  res.redirect("/trackers");
+  res.render("new.ejs", {
+    currentUser: req.session.currentUser
+  });
 });
 
-// wildcard route
-app.get("*", (req, res) => {
-  res.redirect("/trackers");
+app.post("/", (req, res) => {
+  res.render("./userdata.ejs", {
+    currentUser: req.session.currentUser
+  });
 });
 
-// Web server:
+// How to use the currentUser to store in the db:
+//
+// app.post("/articles", (req, res) => {
+//   req.body.author = req.session.currentUser.username;
+//   Article.create(req.body, (err, createdArticle) => {
+//     res.redirect("/articles");
+//   });
+// });
+
+const usersController = require("./controllers/users.js");
+app.use("/users", usersController);
+
+const sessionsController = require("./controllers/sessions.js");
+app.use("/sessions", sessionsController);
+
 app.listen(3000, () => {
-  console.log("listening");
+  console.log("listening...");
 });

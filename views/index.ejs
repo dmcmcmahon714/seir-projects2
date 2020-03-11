@@ -7,23 +7,43 @@
 </head>
 
 <body>
-  <h1>Pain Record</h1>
-  <ul>
-    <% for(let i = 0; i < trackers.length; i++){ %>
-    <li>
-    <a href="/trackers/<%=trackers[i].id; %>">
-        <%=trackers[i].name; %>
-      </a><%=trackers[i].type; %>
-          <%=trackers[i].pain; %>
-      <!-- ADD DELETE FORM HERE -->
-      <form action="/trackers/<%=trackers[i].id%>?_method=DELETE" method="POST">
-        <input type="submit" value="DELETE" />
-      </form>
-          <!-- trackers/5e5a93cd12675b4c0efcb17e/edit -->
-          <a href="/trackers/<%=trackers[i].id%>/edit">Edit</a>
-        </li>
-        <% } %>
-  </ul>
+  <h1>
+    <% if(currentUser) { %>
+    Welcome <%=currentUser.username%>!
+    <% } else { %>
+    Welcome!
+    <% } %>
+  </h1>
+  <% if(currentUser) { %>
+    <form action="/" method="POST">
+      <p>
+          <label for="name">Name:</label>
+          <input id="name" name="name" type="text">
+          </p>
+      <p>
+        <label for="type">Type:</label>
+        <input id="type" name="type" type="text">
+        </p>
+        <p>
+            <label for="type">Pain Score 1-10:</label>
+            <input id="Pain Score 1 to 10" name="Pain Score 1 to 10" type="number">
+          </p>
+      <input type="submit" value="Add">
+    </form>
+  <% } %>
+  <nav>
+    <ul>
+      <li><a href="/sessions/new">Log In</a></li>
+      <li><a href="/users/new">Register</a></li>
+      <% if(currentUser) { %>
+      <li>
+        <form action="/sessions?_method=DELETE" method="POST">
+          <input type="submit" value="Logout" />
+        </form>
+      </li>
+      <% } %>
+    </ul>
+  </nav>
 
 </body>
 
