@@ -24,25 +24,13 @@ mongoose.connection.once("open", () => {
 });
 
 app.get("/", (req, res) => {
-  // if (req.session.currentUser) {
-  //   res.send("the party");
-  // } else {
-  //   res.redirect("/sessions/new");
-  // }
-  res.render("index.ejs", {
-    currentUser: req.session.currentUser
-  });
-});
-
-
-app.get("/", (req, res) => {
-  res.render("new.ejs", {
+  res.redirect("/users", {
     currentUser: req.session.currentUser
   });
 });
 
 app.post("/", (req, res) => {
-  res.render("./userdata.ejs", {
+  res.render("./new.ejs", {
     currentUser: req.session.currentUser
   });
 });
@@ -62,6 +50,13 @@ app.use("/users", usersController);
 const sessionsController = require("./controllers/sessions.js");
 app.use("/sessions", sessionsController);
 
+const logsController = require("./controllers/logs.js");
+// any routes that come in for fruits should be sent
+// to the fruitsContoller
+app.use("/logs", logsController);
+
 app.listen(3000, () => {
   console.log("listening...");
 });
+
+//logs/new?
