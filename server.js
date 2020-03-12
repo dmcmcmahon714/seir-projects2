@@ -41,14 +41,16 @@ app.use("/logs", logsController);
 app.get("/", (req, res)=>{
   if(req.session.currentUser){
     Log.find({userId: req.session.currentUser._id},(err, foundLogs)=>{
+      console.log(foundLogs)
       res.render("index.ejs", {
         currentUser: req.session.currentUser, logs: foundLogs
       })
     })  
+  } else {
+    res.render("index.ejs", {
+      currentUser: req.session.currentUser, logs: null
+    });  
   }
-  res.render("index.ejs", {
-    currentUser: req.session.currentUser
-  });
 });
 
 // app.get('/app', (req, res)=>{    

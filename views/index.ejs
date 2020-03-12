@@ -27,9 +27,17 @@
          
       <input type="submit" value="Add">
     </form>
-    <%= logs %>  
+     
   <% } %>
-  
+  <% if(logs) { %>
+    <h1>Pain logs</h1> 
+    <% for (let log of logs){ %>
+      <p>
+        Type: <%= log.type %>, 
+        Level: <%= log.level %>
+      </p>
+    <%  } %> 
+  <% } %>
   <nav>
     <ul>
       <li><a href="/sessions/new">Log In</a></li>
