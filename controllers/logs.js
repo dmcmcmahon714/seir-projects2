@@ -11,18 +11,19 @@ router.get("/new", (req, res) => {
 
 // CREATE
 router.post("/", (req, res) => {
+  req.body.userId = req.session.currentUser._id
   Log.create(req.body, (error, result) => {
     // res.send(result);
-    res.redirect("/logs");
-  });
+    res.redirect("/");
+  })
 });
 
 // INDEX..aka SHOW ALL
-router.get("/", (req, res) => {
-  Log.find({}, (error, logs) => {
-    res.render("logs/index.ejs", { logs });
-  });
-});
+// router.get("/", (req, res) => {
+//   Log.find({}, (error, logs) => {
+//     res.render("logs/index.ejs", { l : logs });
+//   });
+// });
 
 // // SECRET SEED ROUTE
 router.get("/seed", (req, res) => {
@@ -51,14 +52,14 @@ router.get("/seed", (req, res) => {
   );
 });
 
-// SHOW ONE
-router.get("/:id", (req, res) => {
-  Log.findById(req.params.id, (err, foundLog) => {
-    res.render("show.ejs", {
-      log: foundLog
-    });
-  });
-});
+// // SHOW ONE
+// router.get("/:id", (req, res) => {
+//   Log.findById(req.params.id, (err, foundLog) => {
+//     res.render("show.ejs", {
+//       Log: foundLog
+//     });
+//   });
+// });
 
 // DELETE
 router.delete("/:id", (req, res) => {
@@ -74,7 +75,7 @@ router.get("/:id/edit", (req, res) => {
   Log.findById(req.params.id, (err, foundLog) => {
     console.log("foundLog", foundLog);
     res.render("edit.ejs", {
-      log: foundLog
+      Log: foundLog
     });
   });
 });

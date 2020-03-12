@@ -4,7 +4,6 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const methodOverride = require("method-override");
 
-
 app.use(express.urlencoded({ extended: false }));
 
 app.use(methodOverride("_method"));
@@ -17,6 +16,8 @@ mongoose.connection.once("open", () => {
   console.log("connected to mongo");
 });
 
+const Log = require("./models/logs.js");
+
 app.use(
   session({
     secret: "feedmeseymour", //some random string
@@ -24,29 +25,6 @@ app.use(
     saveUninitialized: false
   })
 );
-
-app.get("/", (req, res)=>{
-  res.render("index.ejs", {
-    currentUser: req.session.currentUser
-  });
-});
-
-
-app.post("/", (req, res) => {
-  res.render("show.ejs", {
-    currentUser: req.session.currentUser
-  });
-});
-
-// How to use the currentUser to store in the db:
-//
-// app.post("/articles", (req, res) => {
-//   req.body.author = req.session.currentUser.username;
-//   Article.create(req.body, (err, createdArticle) => {
-//     res.redirect("/articles");
-//   });
-// });
-
 const usersController = require("./controllers/users.js");
 app.use("/users", usersController);
 
@@ -58,8 +36,45 @@ const logsController = require("./controllers/logs.js");
 // to the fruitsContoller
 app.use("/logs", logsController);
 
+//LOG IN SCREEN 
+
+app.get("/", (req, res)=>{
+  if(req.session.currentUser){
+    Log.find({userId: req.session.currentUser._id},(err, foundLogs)=>{
+      res.render("index.ejs", {
+        currentUser: req.session.currentUser, logs: foundLogs
+      })
+    })  
+  }
+  res.render("index.ejs", {
+    currentUser: req.session.currentUser
+  });
+});
+
+// app.get('/app', (req, res)=>{    
+//   if(req.session.currentUser){        
+//     res.render("./logs/new.ejs")    
+//     } else {        
+//       res.redirect('/sessions/new');    
+//     }});
+
+// app.post("/", (req, res) => {
+//   res.render("show.ejs", {
+//     currentUser: req.session.currentUser
+//   });
+// });
+
+// How to use the currentUser to store in the db:
+//
+// app.post("/articles", (req, res) => {
+//   req.body.author = req.session.currentUser.username;
+//   Article.create(req.body, (err, createdArticle) => {
+//     res.redirect("/articles");
+//   });
+// });
+
+
+
 app.listen(3000, () => {
   console.log("listening...");
 });
-
-//logs/new?
