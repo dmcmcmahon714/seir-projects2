@@ -1,11 +1,122 @@
-body {
-    background-color: green;
-}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-h1 {
+form {
+    padding: 40px;
     font-family: 'Comfortaa', cursive;
+    font-size: 30px;
+    display: table;
 }
 
-nav {
+p  {
+    display: table-row;
+}
+
+label {
+    display: table-cell;
+}
+
+input {
+        display: table-cell;
+        border: 5px solid white; 
+        -webkit-box-shadow: 
+          inset 0 0 8px  rgba(0,0,0,0.1),
+                0 0 16px rgba(0,0,0,0.1); 
+        -moz-box-shadow: 
+          inset 0 0 8px  rgba(0,0,0,0.1),
+                0 0 16px rgba(0,0,0,0.1); 
+        box-shadow: 
+          inset 0 0 8px  rgba(0,0,0,0.1),
+                0 0 16px rgba(0,0,0,0.1); 
+        padding: 15px;
+        background: rgba(255,255,255,0.5);
+        margin: 0 0 10px 0;
+        font-size: 30px;
     
 }
+
+body {
+    background: purple;
+}
+  a {
+      font-size: 125px;
+  }
+  
+  :root {
+    --primary-color: rgb(34, 179, 51);
+    --secondary-color: rgb(24, 13, 13);
+    --complimentary-color: rgb(176, 152, 152);
+  }
+  
+  .container {
+    min-height: 100vh;
+    position: relative;
+    width: 100vw;
+    display: flex;
+    background-color: var(--complimentary-color);
+    justify-content: center;
+    align-items: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+   position: relative;
+  }
+  
+  
+
+  h1 {
+    font-size: 150px;
+    color: var(--primary-color);
+    transform: translateY(-600px);
+    animation: 1.2s slideIn ease-in-out forwards 1s;
+    z-index: 10;
+    opacity: 0;
+    position: relative;
+  }
+  
+  h1::before {
+      content: '';
+      width: 0%;
+      height: 76px;
+      background-color: var(--secondary-color);
+      position: absolute;
+      bottom: -10px;
+      animation: 1s underline ease-in-out forwards 2s;
+      mix-blend-mode: screen;
+  }
+  
+  .overlay {
+      position: absolute;
+      width: 100%;
+      top: 0;
+      bottom: 0;
+      opacity: 0;
+      left: 0;
+      right: 0;
+      background-color: var(--secondary-color);
+      transform: scale(.5);
+      animation: .5s slideIn ease-in-out forwards, 1s skewBg ease-in-out;
+  }
+
+  @keyframes skewBg {
+    0% {
+      transform: scale(.5);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  @keyframes underline {
+    100% {
+      width: 100%;
+    }
+  }
+  
+  @keyframes slideIn {
+    100% {
+      transform: translateY(0px);
+      opacity: 1;
+    }
+  }

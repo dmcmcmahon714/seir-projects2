@@ -6,14 +6,22 @@
 </head>
 
 <body>
-  
+    <div class = 'container projects'>
   <h1>
     <% if(currentUser) { %>
     Welcome <%=currentUser.username%>!
     <% } else { %>
     How is your pain today?
+   
     <% } %>
+        <a href="/sessions/new">Log In</a>
+        <a href="/users/new">Register</a>
   </h1>
+ 
+  <div class="overlay"> 
+  </div>
+</div>
+
   <% if(currentUser) { %>
     <form action="/logs" method="POST">
         <label for="type">Type:</label>
@@ -46,8 +54,7 @@
   <nav>
 
     
-      <a href="/sessions/new">Log In</a></li><br>
-      <a href="/users/new">Register</a></li>
+      
       <% if(currentUser) { %>
      
         <form action="/sessions?_method=DELETE" method="POST">
