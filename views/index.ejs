@@ -17,11 +17,14 @@
   <% if(currentUser) { %>
     <form action="/logs" method="POST">
         <label for="type">Type:</label>
-        <input id="type" name="type" type="text">
+        <input id="type" name="type" type="text"><br>
         
         
             <label for="type">Pain Score 1-10:</label>
-            <input id="level" name="level" type="number">
+            <input id="level" name="level" type="number"><br>
+
+            <label for="date">Date:</label>
+            <input id="date" name="date" type="text">
 
             
          
@@ -34,7 +37,9 @@
     <% for (let log of logs){ %>
       <p>
         Type: <%= log.type %>, 
-        Level: <%= log.level %>
+        Level: <%= log.level %>,
+        Date: <%= log.date %>
+
       </p>
     <%  } %> 
   <% } %>
