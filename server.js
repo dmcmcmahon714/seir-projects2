@@ -18,6 +18,8 @@ mongoose.connection.once("open", () => {
 
 const Log = require("./models/logs.js");
 
+app.use(express.static(__dirname + '/public'));
+
 app.use(
   session({
     secret: "feedmeseymour", //some random string
