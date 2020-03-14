@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const logSchema = new mongoose.Schema({
   userId: String,
   type: String,
-  level: String,
+  level: Number,
   date: String
 });
 

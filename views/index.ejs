@@ -10,15 +10,14 @@
       <h1>
         <% if(currentUser) { %>
           Welcome <%=currentUser.username%>!
-        </h1>  
-        <h3>Let's see how you're doing today. Below enter the type of symptom you're experiencing, the level of severity on a 10 scale, and the date and time of the experience.</h3> </br>
+        
+       Let's see how you're doing today. Below enter the type of symptom you're experiencing, the level of severity on a 10 scale, and the date and time of the experience. </br>
        
         
   
-    <h1>
     
     <% } else { %>
-    How is your pain today?
+    How is your pain today? <br>
     <a href="/sessions/new">Log In</a>
     <a href="/users/new">Register</a>
     <% } %>
@@ -34,10 +33,10 @@
         <input id="type" name="type" type="text"><br>
         
         
-            <label for="type">Pain Score 1-10:</label>
+            <label for="type">Pain Score:</label>
             <input id="level" name="level" type="number"><br>
 
-            <label for="date">Date:</label>
+            <label for="date">Date & Time:</label>
             <input id="date" name="date" type="text">
 
             

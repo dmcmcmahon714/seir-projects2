@@ -10,6 +10,14 @@ form {
     font-size: 30px;
 }
 
+p {
+    padding: 40px;
+    font-family: 'Comfortaa', cursive;
+    font-size: 30px;
+    color: lime
+}
+
+
 label {
     display: inline-block;
     width: 100px;
@@ -44,13 +52,13 @@ body {
     background: purple;
 }
   a {
-      font-size: 75px;
+      font-size: 90px;
   }
   
   :root {
     --primary-color: rgb(34, 179, 51);
     --secondary-color: rgb(24, 13, 13);
-    --complimentary-color: rgb(176, 152, 152);
+    --complimentary-color: rgb(106, 46, 46);
   }
   
   .container {
