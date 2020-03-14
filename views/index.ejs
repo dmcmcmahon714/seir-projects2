@@ -7,15 +7,21 @@
 
 <body>
     <div class = 'container projects'>
-  <h1>
-    <% if(currentUser) { %>
-    Welcome <%=currentUser.username%>!
+      <h1>
+        <% if(currentUser) { %>
+          Welcome <%=currentUser.username%>!
+        </h1>  
+        <h3>Let's see how you're doing today. Below enter the type of symptom you're experiencing, the level of severity on a 10 scale, and the date and time of the experience.</h3> </br>
+       
+        
+  
+    <h1>
+    
     <% } else { %>
     How is your pain today?
-   
+    <a href="/sessions/new">Log In</a>
+    <a href="/users/new">Register</a>
     <% } %>
-        <a href="/sessions/new">Log In</a>
-        <a href="/users/new">Register</a>
   </h1>
  
   <div class="overlay"> 
@@ -41,7 +47,7 @@
      
   <% } %>
   <% if(logs) { %>
-    <h1>Pain logs</h1> 
+    <h2>Pain logs</h2> 
     <% for (let log of logs){ %>
       <p>
         Type: <%= log.type %>, 
