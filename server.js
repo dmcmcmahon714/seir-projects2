@@ -3,6 +3,8 @@ const app = express();
 const mongoose = require("mongoose");
 const session = require("express-session");
 const methodOverride = require("method-override");
+const PORT = process.env.PORT || 3000;
+const MONGODB_URI = process.env.MONGODB_URI
 
 app.use(express.urlencoded({ extended: false }));
 
@@ -34,8 +36,7 @@ const sessionsController = require("./controllers/sessions.js");
 app.use("/sessions", sessionsController);
 
 const logsController = require("./controllers/logs.js");
-// any routes that come in for fruits should be sent
-// to the fruitsContoller
+
 app.use("/logs", logsController);
 
 //LOG IN SCREEN 
