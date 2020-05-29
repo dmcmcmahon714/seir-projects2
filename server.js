@@ -3,8 +3,26 @@ const app = express();
 const mongoose = require("mongoose");
 const session = require("express-session");
 const methodOverride = require("method-override");
+const db = mongoose.connection;
 const PORT = process.env.PORT || 3000;
-const MONGODB_URI = process.env.MONGODB_URI
+
+const MONGODB_URI = process.env.MONGODB_URI || 'mogodb://localhost:27017/authexampleapp'
+
+mongoose.connect(MONGODB_URI, {useNewUrlParser: true});
+
+db.on('error', (err) => console.log(err.message + 'is Mongod not running?'));
+db.on('connected', () => console.log('mongo connected: ', MONGODB_URI));
+db.on('disconnected', () => console.log('mongo disconnected'));
+
+db.on('open' , ()=>{});
+
+app.use(express.static('public'));
+
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+
+app.use(methodOverride('_method'));
+
 
 app.use(express.urlencoded({ extended: false }));
 
@@ -21,6 +39,7 @@ mongoose.connection.once("open", () => {
 const Log = require("./models/logs.js");
 
 app.use(express.static(__dirname + '/public'));
+
 
 app.use(
   session({
@@ -80,6 +99,4 @@ app.get("/", (req, res)=>{
 
 
 
-app.listen(3000, () => {
-  console.log("listening...");
-});
+app.listen(PORT, () => console.log( 'Listening on port:', PORT));

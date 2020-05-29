@@ -1,6 +1,7 @@
 {
   "name": "ejs_auth",
   "version": "1.0.0",
+  "description": "pain tracker",
   "engines": {
     "node": "13.3.0"
   },
@@ -10,8 +11,13 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dmcmcmahon714/seir-projects2.git"
+  },
   "author": "",
   "license": "ISC",
+  "homepage": "https://github.com/dmcmcmahon714/seir-projects2.git#readme",
   "dependencies": {
     "bcrypt": "^4.0.1",
     "ejs": "^3.0.1",
