@@ -2,10 +2,14 @@
 <html>
 
 <head>
+  
     <%- include("./partials/head.ejs") %>
+
 </head>
 
 <body>
+
+
     <div class = 'container projects'>
       <h1>
         <% if(currentUser) { %>
@@ -18,8 +22,10 @@
     
     <% } else { %>
     How is your pain today? <br>
-    <a href="/sessions/new">Log In</a>
-    <a href="/users/new">Register</a>
+    <div className="homelinks">
+    <a href="/sessions/new"><h4>Log In</h4></a>
+    <a href="/users/new"><h4>Register</h4></a>
+  </div>
     <% } %>
   </h1>
  
@@ -37,7 +43,7 @@
             <input id="level" name="level" type="number"><br>
 
             <label for="date">Date & Time:</label>
-            <input id="date" name="date" type="text">
+            <input id="date" name="date" type="date">
 
             
          
@@ -48,12 +54,15 @@
   <% if(logs) { %>
     <h2>Pain logs</h2> 
     <% for (let log of logs){ %>
+    <div>
+    
+  </div>
       <p>
         Type: <%= log.type %>, 
         Level: <%= log.level %>,
         Date: <%= log.date %>
-
       </p>
+     
     <%  } %> 
   <% } %>
   <nav>

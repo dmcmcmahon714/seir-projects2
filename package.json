@@ -19,6 +19,7 @@
   "homepage": "https://github.com/dmcmcmahon714/seir-projects2.git#readme",
   "dependencies": {
     "bcrypt": "^4.0.1",
+    "canvas": "^2.6.1",
     "ejs": "^3.0.1",
     "express": "^4.17.1",
     "express-session": "^1.17.0",

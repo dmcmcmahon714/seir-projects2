@@ -17,6 +17,9 @@ p {
     color: lime
 }
 
+a {
+  margin-left: 1em;
+}
 
 label {
     display: inline-block;
@@ -93,6 +96,18 @@ body {
     position: relative;
     font-family:'Patua One', cursive;
     display:inline-block; 
+  }
+
+  h4 {
+    display: flex;
+    float: left;
+    font-size: 40px;
+    padding-right: 2em;
+    text-decoration: underline;
+  }
+
+  h4:hover {
+    color: rgb(34, 179, 51);
   }
   
 

@@ -4,9 +4,11 @@ const logSchema = new mongoose.Schema({
   userId: String,
   type: String,
   level: Number,
-  date: String
+  date: Date
 });
 
 const Log = mongoose.model("Log", logSchema);
+
+
 
 module.exports = Log;
