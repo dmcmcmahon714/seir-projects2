@@ -18,6 +18,8 @@ router.post("/", (req, res) => {
   })
 });
 
+
+
 // INDEX..aka SHOW ALL
 // router.get("/", (req, res) => {
 //   Log.find({}, (error, logs) => {
