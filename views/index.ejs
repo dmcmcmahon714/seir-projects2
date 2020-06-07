@@ -15,7 +15,7 @@
         <% if(currentUser) { %>
           Welcome <%=currentUser.username%>!
         
-       Let's see how you're doing today. Below enter the type of symptom you're experiencing, the level of severity on a 10 scale, and the date and time of the experience. </br>
+       Let's see how you're doing today. Below enter the type of symptom you're experiencing, the level of severity on a 10 scale, and the date of the experience. </br>
        
         
   
@@ -42,8 +42,8 @@
             <label for="type">Pain Score:</label>
             <input id="level" name="level" type="number"><br>
 
-            <label for="date">Date & Time:</label>
-            <input id="date" name="date" type="date">
+            <label for="date">Date</label>
+            <input id="date" name="date" type="datetime-local">
 
             
          
