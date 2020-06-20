@@ -1,16 +1,14 @@
-Problem: I have a simple/minor pain issue that I have a hard time keeping track of over time.
-General Purpose/Idea: Allows users to rate their pain based on the date.
+This is an app designed to allow users to easily record how a specific pain or ailment is progressing over time. Ideally this would help doctors looking for more accurate self-reporting. This is an MVC format app with full CRUD functinality. The database was created with MongoDB. 
 
-MVC format application with mongodb and bcrypt authentication. 
+Features:
+Authentication was created with bcrypt and express-session to allow users to sign up, sign in, and log out, with sole access to their private data. Features include: User Authentication, Private Pain level tracker, datae and time form inputs, large text for accessibility.
 
-I wouldl like to incorporate some graph or visualization of the data over time, but this serves the main purpose. 
 
-Basic wireframe: 
+Technoligies Used:
 
-User Login in ***SESSIONS***
+Node.js
+EJS
+Express
+Express-Session
+Mongoose
 
-User Page with calendar
-
-pain scale, notes
-
-seeding - add id to each model
